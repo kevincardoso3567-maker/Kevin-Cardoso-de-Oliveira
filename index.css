@@ -1,0 +1,673 @@
+/* =======================================================
+   1. VARIÁVEIS E CONFIGURAÇÕES GLOBAIS
+   ======================================================= */
+:root {
+    /* Light Mode Cores */
+    --primary-color: #5d53ff; /* Cor de Destaque (Azul/Roxo Vibrante) */
+    --secondary-color: #3f36a5; 
+    --text-color: #2c3e50;
+    --background-color: #f0f4f8;
+    --card-bg: #ffffff;
+    --link-color: #2980b9;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --progress-bar-bg: #ecf0f1;
+}
+
+/* Dark Mode Cores */
+body.dark-mode {
+    --primary-color: #8a81ff; /* Azul/Roxo mais claro para contraste */
+    --secondary-color: #3f36a5;
+    --text-color: #ecf0f1;
+    --background-color: #1f2937;
+    --card-bg: #2d3748;
+    --link-color: #74b9ff; 
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --progress-bar-bg: #4a5568;
+}
+
+/* Configurações do Body */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: background-color 0.5s, color 0.5s; /* Transição de tema suave */
+    overflow-x: hidden;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--link-color);
+}
+
+/* Adiciona foco visível para acessibilidade */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Títulos de Seção */
+.section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    font-weight: 700;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--secondary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+    transform: scaleX(0); /* Efeito de linha animada */
+    transition: transform 0.6s ease-out;
+}
+
+/* Classe para acionar a animação da linha */
+.section-title.is-visible::after {
+    transform: scaleX(1);
+}
+
+/* =======================================================
+   2. HEADER E NAVEGAÇÃO
+   ======================================================= */
+#header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow);
+    transition: background-color 0.3s;
+}
+
+#nav {
+    display: flex;
+    /* Centraliza a navegação após a remoção do logo */
+    justify-content: center; 
+    align-items: center;
+    padding: 15px 0;
+}
+
+#nav ul {
+    list-style: none;
+    display: flex;
+}
+
+#nav li {
+    margin-left: 30px;
+}
+
+#nav a {
+    color: var(--text-color);
+    font-weight: 600;
+    position: relative;
+}
+
+/* Efeito Underline Animado */
+#nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    left: 50%;
+    bottom: -5px;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+
+#nav a:hover::after,
+#nav a.active::after {
+    width: 100%;
+}
+
+/* Botão de Tema */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: transform 0.3s;
+    margin-left: 30px; 
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* =======================================================
+   3. HERO SECTION (APRESENTAÇÃO)
+   ======================================================= */
+#hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.hero-content {
+    max-width: 900px;
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+}
+
+/* CÓDIGO AJUSTADO PARA O NOME "Olá! Eu sou Kevin Cardoso de Oliveira" */
+.hero-content h1 {
+    font-size: 4em;
+    font-weight: 700;
+    
+    margin: 0 auto 10px auto; 
+    
+    /* Propriedades para a animação de digitação */
+    overflow: hidden; 
+    border-right: .15em solid var(--primary-color); 
+    white-space: nowrap; 
+    max-width: max-content; 
+    
+    /* Ajuste de Duração e STEPS (aprox. 35 chars) */
+    animation: 
+        typing 2.5s steps(35, end) 0.5s forwards, 
+        blink-caret .75s step-end infinite 3s; 
+    
+    width: 0; 
+}
+
+/* Keyframes da animação de digitação */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* Keyframes da animação do cursor */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary-color); }
+}
+
+.hero-content h2 {
+    font-size: 1.8em;
+    font-weight: 300;
+    color: var(--secondary-color);
+    opacity: 0;
+    /* Atraso ajustado: 3s (fim da digitação) + 0.5s (pausa) = 3.5s */
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 3.5s; 
+}
+
+/* ATUALIZAÇÃO: Estilo para links sociais (lado a lado e centralizado) */
+.social-links {
+    margin-top: 30px;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    /* Atraso ajustado: 3.5s (h2) + 0.5s (pausa) = 4s */
+    animation-delay: 4s; 
+    
+    /* NOVO: Estilo para alinhar ícones lado a lado */
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espaçamento entre as imagens */
+}
+
+/* NOVO: Estilo para as imagens customizadas (GT.png e WS.png) */
+.social-links .custom-icon {
+    width: 2.5em; /* Tamanho pequeno, relativo ao texto */
+    height: 2.5em;
+    object-fit: contain; 
+    transition: transform 0.3s;
+}
+
+.social-links a:hover .custom-icon {
+    transform: scale(1.1); /* Efeito de hover */
+}
+
+/* Animação de Fade In genérica (usada por JS para AOS) */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =======================================================
+   4. SEÇÕES COM ANIMAÇÃO (AOS - Intersection Observer)
+   ======================================================= */
+.section {
+    padding: 80px 0;
+    opacity: 0; 
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efeito Tilt/Hover nos cards */
+.card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease-out, box-shadow 0.3s, background-color 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* DARK MODE: Ajuste de Filtro para Imagens (Ex: foto de perfil) */
+body.dark-mode .profile-img {
+    filter: brightness(0.9) contrast(1.1);
+}
+
+/* SEÇÃO ABOUT */
+#about .card {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary-color);
+    flex-shrink: 0;
+}
+
+/* SEÇÃO SKILLS (BARRAS DE PROGRESSO e ITENS COM ÍCONE) */
+#skills .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.skill-item {
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.skill-item h4 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* ESTILOS PARA CARTÃO BASEADO EM ÍCONE */
+.skill-content-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; /* Centraliza verticalmente a imagem no espaço remanescente */
+    text-align: center;
+    padding: 0; 
+    height: 100%; 
+    flex-grow: 1; 
+}
+
+/* Estilo padrão (se houver texto) */
+.skill-icon {
+    width: 80px; 
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px; 
+    transition: transform 0.3s ease;
+}
+
+/* ALTERAÇÃO AQUI: Aumentando o max-width e max-height para 200px */
+.skill-icon.large {
+    width: 100%; /* Ocupa a largura máxima do contêiner */
+    max-width: 200px; /* Aumentado para 200px */
+    height: auto;
+    max-height: 200px; /* Aumentado para 200px */
+    margin-bottom: 0; 
+}
+
+.skill-item:hover .skill-icon {
+    transform: scale(1.1); 
+}
+
+/* FIM DOS ESTILOS DE ÍCONE */
+
+.progress-bar {
+    background-color: var(--progress-bar-bg);
+    border-radius: 10px;
+    height: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0; 
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: width 1.5s ease-out; 
+}
+
+.progress-bar-fill::after {
+    content: attr(data-level);
+    position: absolute;
+    top: -20px;
+    right: 0;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* SEÇÃO EXPERIENCE & EDUCATION (TIMELINE) */
+#experience, #education {
+    background-color: var(--background-color); 
+}
+
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Linha central da Timeline */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: var(--primary-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    transition: height 1s ease-out;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    opacity: 0; 
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.timeline-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Círculo no meio da Timeline */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: var(--primary-color);
+    border: 4px solid var(--background-color); 
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+    transition: border-color 0.3s;
+}
+
+.timeline-left {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-right {
+    left: 50%;
+}
+
+/* Alinhamento dos círculos */
+.timeline-right::after {
+    left: -10px;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background-color: var(--card-bg);
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.timeline-content h4 {
+    color: var(--secondary-color);
+    font-size: 1.1em;
+}
+
+.timeline-content .dates {
+    font-size: 0.9em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* SEÇÃO PROJECTS (GRID) */
+#projects .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    min-height: 280px;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(93, 83, 255, 0.9); 
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.4s ease-out;
+    text-align: center;
+}
+
+.project-overlay h4 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.project-overlay p {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+.project-overlay .tech-tags span {
+    display: inline-block;
+    background: white;
+    color: var(--primary-color);
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    margin: 0 5px 5px 0;
+}
+
+/* SEÇÃO CONTACT */
+#contact .card {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#contact input, #contact textarea {
+    padding: 12px;
+    border: 1px solid var(--progress-bar-bg);
+    border-radius: 6px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: border-color 0.3s;
+}
+
+#contact input:focus, #contact textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-color)30;
+}
+
+#contact button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#contact button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* FOOTER */
+#footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--progress-bar-bg);
+    font-size: 0.9em;
+    color: var(--secondary-color);
+}
+
+
+/* =======================================================
+   5. MEDIA QUERIES (RESPONSIVIDADE)
+   ======================================================= */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 3em;
+    }
+
+    /* Ajuste de animação para dispositivos móveis */
+    .hero-content h1 {
+        animation-duration: 2s; 
+    }
+    .hero-content h2 {
+        animation-delay: 2.5s;
+    }
+    .social-links {
+        animation-delay: 3s;
+    }
+    
+    #about .card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .timeline::after {
+        left: 20px; 
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 10px;
+        text-align: left;
+    }
+
+    .timeline-item::after {
+        left: 10px;
+        right: auto;
+    }
+
+    .timeline-right {
+        left: 0;
+    }
+
+    #nav ul {
+        display: none; 
+    }
+    
+    #nav {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-content h1 {
+        font-size: 2.2em;
+    }
+
+    .section-title {
+        font-size: 1.8em;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    #nav {
+        padding: 10px 0;
+    }
+    
+    /* Garante que o ícone grande se ajuste em telas muito pequenas */
+    .skill-icon.large {
+        max-width: 150px;
+        max-height: 150px;
+    }
+}

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Interativo - Kevin Cardoso</title> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="header">
+        <nav class="container" id="nav">
+            <ul>
+                <li><a href="#about" data-target="about">Sobre</a></li>
+                <li><a href="#skills" data-target="skills">Habilidades</a></li>
+                <li><a href="#experience" data-target="experience">Experiência</a></li>
+                <li><a href="#projects" data-target="projects">Projetos</a></li>
+                <li><a href="#contact" data-target="contact">Contato</a></li>
+            </ul>
+            <button id="theme-toggle" class="theme-toggle" title="Alternar Tema">
+                <i class="fas fa-sun"></i> 
+            </button>
+        </nav>
+    </div>
+
+    <main>
+    <section id="hero" class="section">
+        <div class="hero-content">
+            <h1>Kevin Cardoso de Oliveira</h1>
+            <h2>Título Profissional - | Tec.Adm| Desenvolvedor Web | Web Designer</h2>
+           <div class="social-links">
+    <a href="https://github.com/kevincardoso3567-maker" target="_blank" rel="noopener noreferrer" title="Perfil GitHub">
+        <img src="GT.png" alt="Logo GT (GitHub)" class="custom-icon">
+    </a>
+    
+    <a href="https://wa.me/5511957222982" target="_blank" rel="noopener noreferrer" title="Contato WhatsApp">
+        <img src="WS.png" alt="Logo WS (WhatsApp)" class="custom-icon">
+    </a>
+</div>
+        </div>
+    </section>
+
+    </main>
+
+        <section id="about" class="section container">
+            <h3 class="section-title">Sobre Mim</h3>
+            <div class="card">
+                <img src="profile.jpg" alt="Foto de Perfil" class="profile-img">
+                <div class="about-text">
+                    <p>
+                        [Parágrafo 1: Resumo profissional impactante. Destaque sua experiência, paixão por tecnologia e sua filosofia de trabalho.]
+                    </p>
+                    <p>
+                        [Parágrafo 2: Foco em resultados. Mencione as tecnologias que domina (ex: React, Node.js, AWS) e como as utiliza para resolver problemas de negócios e criar soluções escaláveis.]
+                    </p>
+                    <p>
+                        [Parágrafo 3: Metas e personalidade. Mencione o que busca (ex: novos desafios, projetos inovadores) e um pouco sobre sua ética de trabalho (ex: aprendizado contínuo, trabalho em equipe).]
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!--HABILIDADES TECNICAS-->
+        <section id="skills" class="section container">
+            <h3 class="section-title">Habilidades Técnicas</h3>
+            <div class="skills-grid">
+                
+                <div class="skill-item card" data-level="95">
+                    <div class="skill-content-icon">
+                        <img src="HTML.png" alt="Logo HTML5 e CSS3" class="skill-icon large">
+                    </div>
+                </div>
+                
+                <div class="skill-item card" data-level="90">
+                    <div class="skill-content-icon">
+                        <img src="CSS.png" alt="Logo JavaScript" class="skill-icon large"> 
+                    </div>
+                </div>
+                
+                <div class="skill-item card" data-level="85">
+                    <div class="skill-content-icon">
+                        <img src="JS.png" alt="Logo React/Vue/Angular" class="skill-icon large">
+                    </div>
+                </div>
+                
+                <div class="skill-item card" data-level="75">
+                    <div class="skill-content-icon">
+                        <img src="EXCEL.png" alt="Logo Node.js/Python/Java" class="skill-icon large">
+                    </div>
+                </div>
+                
+                <div class="skill-item card" data-level="80">
+                    <div class="skill-content-icon">
+                        <img src="PS.png" alt="Logo SQL/NoSQL" class="skill-icon large">
+                    </div>
+                </div>
+                
+                
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="experience" class="section container">
+            <h3 class="section-title">Experiência Profissional</h3>
+            <div class="timeline">
+                <div class="timeline-item timeline-right">
+                    <div class="timeline-content card">
+                        <h4>[Cargo Atual] | [Empresa Atual]</h4>
+                        <span class="dates">Jan 2023 – Atual</span>
+                        <p>Liderança no desenvolvimento front-end de aplicações web de alto tráfego usando React e TypeScript. Implementação de testes unitários e de integração (Jest/Testing Library).</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-left">
+                    <div class="timeline-content card">
+                        <h4>[Cargo Anterior] | [Empresa Anterior]</h4>
+                        <span class="dates">Mar 2020 – Dez 2022</span>
+                        <p>Desenvolvimento de APIs RESTful usando Node.js e Express. Otimização de consultas em PostgreSQL, resultando em uma melhoria de 30% no tempo de resposta do sistema.</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-right">
+                    <div class="timeline-content card">
+                        <h4>[Cargo Inicial] | [Empresa Inicial]</h4>
+                        <span class="dates">Jul 2018 – Fev 2020</span>
+                        <p>Criação e manutenção de sites institucionais responsivos com HTML, CSS e jQuery. Foco em SEO e acessibilidade (WCAG).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="education" class="section container">
+            <h3 class="section-title">Formação Acadêmica</h3>
+            <div class="timeline">
+                <div class="timeline-item timeline-left">
+                    <div class="timeline-content card">
+                        <h4>[Nome do Curso]</h4>
+                        <span class="dates">[Nome da Instituição] | 2017 – 2021</span>
+                        <p>Foco em engenharia de software, algoritmos e estrutura de dados.</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-right">
+                    <div class="timeline-content card">
+                        <h4>[Pós-graduação/Bootcamp]</h4>
+                        <span class="dates">[Nome da Instituição] | 2022</span>
+                        <p>Especialização em Cloud Computing e arquiteturas de microsserviços.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section container">
+            <h3 class="section-title">Principais Projetos</h3>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-overlay">
+                        <h4>Sistema de Gerenciamento XYZ</h4>
+                        <p>Plataforma SaaS para controle de estoque e vendas, utilizada por 50+ clientes. Desenvolvido com React e Firebase.</p>
+                        <div class="tech-tags">
+                            <span>React</span>
+                            <span>Firebase</span>
+                            <span>SASS</span>
+                        </div>
+                        <a href="[Link do Projeto]" target="_blank" rel="noopener noreferrer" style="color:white; text-decoration: underline;">Ver Projeto <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-overlay">
+                        <h4>API de Cotação de Moedas</h4>
+                        <p>API robusta e escalável que fornece dados de câmbio em tempo real. Deploy feito com Docker e AWS EC2.</p>
+                        <div class="tech-tags">
+                            <span>Node.js</span>
+                            <span>Express</span>
+                            <span>Docker</span>
+                        </div>
+                        <a href="[Link do Projeto]" target="_blank" rel="noopener noreferrer" style="color:white; text-decoration: underline;">Ver Projeto <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-overlay">
+                        <h4>Portfólio 3D Interativo</h4>
+                        <p>Um experimento pessoal usando Three.js e WebGL para criar uma experiência de portfólio imersiva no navegador.</p>
+                        <div class="tech-tags">
+                            <span>Three.js</span>
+                            <span>WebGL</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <a href="[Link do Projeto]" target="_blank" rel="noopener noreferrer" style="color:white; text-decoration: underline;">Ver Projeto <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section container">
+            <h3 class="section-title">Entre em Contato</h3>
+            <div class="card">
+                <p>Estou disponível para novos projetos e oportunidades em tempo integral. Envie uma mensagem!</p>
+                <form action="https://formspree.io/" method="POST">
+                    <input type="text" name="name" placeholder="Seu Nome" required>
+                    <input type="email" name="_replyto" placeholder="Seu E-mail" required>
+                    <textarea name="message" rows="5" placeholder="Sua Mensagem..." required></textarea>
+                    <button type="submit">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <p>&copy; 2024 Kevin Cardoso de Oliveira. Desenvolvido com <i class="fas fa-heart" style="color: var(--primary-color);"></i> e código modular.</p>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
