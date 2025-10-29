@@ -58,14 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Fecha o menu ao clicar em qualquer link de navegação
-        document.querySelectorAll('#nav ul li a').forEach(link => {
+        // =======================================================
+        // CÓDIGO REMOVIDO PARA MANTER O MENU ABERTO NO MOBILE
+        // =======================================================
+        /* document.querySelectorAll('#nav ul li a').forEach(link => {
             link.addEventListener('click', () => {
-                navList.classList.remove('is-open');
+                navList.classList.remove('is-open'); // <-- LINHA REMOVIDA
                 menuToggle.querySelector('i').classList.remove('fa-times');
                 menuToggle.querySelector('i').classList.add('fa-bars');
             });
         });
+        */
+        // =======================================================
     }
 
     // =======================================================
@@ -85,11 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
                 
-                // Lógica especial para iniciar a animação das Skills
-                if (entry.target.id === 'skills') {
-                    animateSkills();
-                }
-                
                 // Desliga o observer para garantir que a animação seja única
                 if (entry.target.classList.contains('is-visible')) {
                     observer.unobserve(entry.target);
@@ -101,26 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
     sectionsToAnimate.forEach(section => {
         sectionObserver.observe(section);
     });
-
+    
     // =======================================================
-    // 4. ANIMAÇÃO DAS BARRAS DE PROGRESSO (Skills)
-    // =======================================================
-    function animateSkills() {
-        document.querySelectorAll('.skill-item').forEach(item => {
-            const level = item.getAttribute('data-level');
-            const fill = item.querySelector('.progress-bar-fill');
-            
-            if (fill) {
-                // Pequeno delay para garantir que a transição CSS seja aplicada
-                setTimeout(() => {
-                    fill.style.width = level + '%';
-                }, 10);
-            }
-        });
-    }
-
-    // =======================================================
-    // 5. DESTAQUE DO LINK DE NAVEGAÇÃO AO SCROLL (Ativo)
+    // 4. DESTAQUE DO LINK DE NAVEGAÇÃO AO SCROLL (Ativo)
     // =======================================================
     const navLinks = document.querySelectorAll('#nav a');
 
