@@ -1,21 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-            
+    
     // =======================================================
-    // 1. LÓGICA DE DARK MODE PERSISTENTE
+    // 1. Alternância de Tema (Dark/Light Mode)
     // =======================================================
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
-    const icon = themeToggle.querySelector('i');
+    const themeIcon = themeToggle.querySelector('i');
 
     function applyTheme(isDark) {
         if (isDark) {
             body.classList.add('dark-mode');
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
         } else {
             body.classList.remove('dark-mode');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
         }
     }
 
@@ -36,11 +36,42 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTheme(isDark);
     });
 
+    // =======================================================
+    // 2. Menu de Navegação Mobile (Hambúrguer)
+    // =======================================================
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navList = document.querySelector('#nav ul');
+
+    if (menuToggle && navList) {
+        menuToggle.addEventListener('click', () => {
+            // Alterna a classe que MOSTRA os atalhos no CSS
+            navList.classList.toggle('is-open'); 
+
+            // Altera o ícone (hambúrguer <-> X)
+            const icon = menuToggle.querySelector('i');
+            if (navList.classList.contains('is-open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times'); 
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars'); 
+            }
+        });
+
+        // Fecha o menu ao clicar em qualquer link de navegação
+        document.querySelectorAll('#nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('is-open');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+            });
+        });
+    }
 
     // =======================================================
-    // 2. OBSERVER PARA ANIMAÇÃO AO SCROLL (AOS) - AGORA FIXO
+    // 3. OBSERVER PARA ANIMAÇÃO AO SCROLL (AOS)
     // =======================================================
-    // Seleciona todas as seções, títulos e itens da timeline
+    // Observa seções, títulos e itens da timeline/experiência
     const sectionsToAnimate = document.querySelectorAll('.section, .section-title, .timeline-item');
     
     const observerOptions = {
@@ -54,13 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
                 
-                // Lógica especial para barras de progresso (Skills)
+                // Lógica especial para iniciar a animação das Skills
                 if (entry.target.id === 'skills') {
                     animateSkills();
                 }
                 
-                // Desliga o observer para TODOS os elementos que forem visíveis,
-                // garantindo que a animação não seja revertida e permaneça fixa.
+                // Desliga o observer para garantir que a animação seja única
                 if (entry.target.classList.contains('is-visible')) {
                     observer.unobserve(entry.target);
                 }
@@ -72,37 +102,40 @@ document.addEventListener('DOMContentLoaded', () => {
         sectionObserver.observe(section);
     });
 
-
     // =======================================================
-    // 3. ANIMAÇÃO DAS BARRAS DE PROGRESSO
+    // 4. ANIMAÇÃO DAS BARRAS DE PROGRESSO (Skills)
     // =======================================================
     function animateSkills() {
         document.querySelectorAll('.skill-item').forEach(item => {
             const level = item.getAttribute('data-level');
             const fill = item.querySelector('.progress-bar-fill');
             
-            // Define o width (aciona a transição CSS)
-            fill.style.width = level + '%';
+            if (fill) {
+                // Pequeno delay para garantir que a transição CSS seja aplicada
+                setTimeout(() => {
+                    fill.style.width = level + '%';
+                }, 10);
+            }
         });
     }
 
     // =======================================================
-    // 4. DESTAQUE DO LINK DE NAVEGAÇÃO AO SCROLL
+    // 5. DESTAQUE DO LINK DE NAVEGAÇÃO AO SCROLL (Ativo)
     // =======================================================
     const navLinks = document.querySelectorAll('#nav a');
 
     const linkObserverOptions = {
         root: null,
-        rootMargin: '-50% 0px -50% 0px', // Aciona quando a seção está no centro da viewport
+        // Detecta a seção quando ela ocupa a maior parte da tela (ou está no centro)
+        rootMargin: '-30% 0px -69% 0px', 
         threshold: 0 
     };
 
     const linkObserver = new IntersectionObserver((entries) => {
-        // Remove a classe 'active' de todos os links
+        // Remove 'active' de todos antes de adicionar ao novo
         navLinks.forEach(link => link.classList.remove('active'));
 
         entries.forEach(entry => {
-            // Adiciona a classe 'active' ao link da seção centralizada
             if (entry.isIntersecting) {
                 const targetId = entry.target.id;
                 const activeLink = document.querySelector(`#nav a[href="#${targetId}"]`);
@@ -113,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, linkObserverOptions);
 
-    // Observa apenas as grandes seções (que têm IDs de navegação)
+    // Observa todas as seções principais
     document.querySelectorAll('main > section').forEach(section => {
         linkObserver.observe(section);
     });
