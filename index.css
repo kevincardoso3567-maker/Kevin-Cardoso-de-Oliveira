@@ -42,7 +42,7 @@ body {
     color: var(--text-color);
     background-color: var(--background-color);
     transition: background-color 0.5s, color 0.5s; /* Transição de tema suave */
-    overflow-x: hidden;
+    overflow-x: hidden; 
 }
 
 a {
@@ -112,17 +112,15 @@ textarea:focus-visible {
 
 #nav {
     display: flex;
-    /* CORREÇÃO: Usar space-between para separar elementos (menu/toggle) */
+    /* CORREÇÃO: Usa space-between para separar Menu Toggle, Links e Tema no Mobile */
     justify-content: space-between; 
     align-items: center;
-    /* Ajusta padding para centralizar visualmente a navegação no desktop */
     padding: 15px 20px; 
 }
 
 #nav ul {
     list-style: none;
     display: flex;
-    /* NOVO: Aumenta a ordem para forçar a lista para o centro no desktop */
     order: 1; 
 }
 
@@ -164,7 +162,7 @@ textarea:focus-visible {
     font-size: 1.8em;
     padding: 5px;
     transition: color 0.3s;
-    order: 0; /* Ordem para o Mobile */
+    order: 0; /* Ordem para o Mobile/Left */
 }
 
 
@@ -177,7 +175,7 @@ textarea:focus-visible {
     font-size: 1.5em;
     transition: transform 0.3s;
     margin-left: 30px; 
-    order: 2; /* Ordem para o Desktop */
+    order: 2; /* Ordem para o Desktop/Right */
 }
 
 .theme-toggle:hover {
@@ -351,7 +349,7 @@ body.dark-mode .profile-img {
     display: flex;
     flex-direction: column;
     align-items: center; 
-    justify-content: center; /* Centraliza verticalmente a imagem no espaço remanescente */
+    justify-content: center; 
     text-align: center;
     padding: 0; 
     height: 100%; 
@@ -367,7 +365,6 @@ body.dark-mode .profile-img {
     transition: transform 0.3s ease;
 }
 
-/* ALTERAÇÃO AQUI: Aumentando o max-width e max-height para 200px */
 .skill-icon.large {
     width: 100%; /* Ocupa a largura máxima do contêiner */
     max-width: 200px; /* Aumentado para 200px */
@@ -614,25 +611,22 @@ body.dark-mode .profile-img {
 
 
 /* =======================================================
-    5. MEDIA QUERIES (RESPONSIVIDADE)
+    5. MEDIA QUERIES (RESPONSIVIDADE AJUSTADA)
     ======================================================= */
 @media (max-width: 992px) {
     /* -------------------------------------
-        CORREÇÃO CHAVE: HEADER/NAVEGAÇÃO
+        HEADER/NAVEGAÇÃO (CORREÇÃO DE ESTRUTURA)
         ------------------------------------- */
-    /* Exibe o botão de Menu Hambúrguer (você deve adicioná-lo no HTML) */
     .menu-toggle {
         display: block; 
     }
     
-    /* Reajusta a navegação para alinhar botão, lista e tema */
     #nav {
         justify-content: space-between;
-        padding: 15px 20px; /* Padding ajustado para melhor aparência mobile */
+        padding: 15px 20px; 
         position: relative;
     }
 
-    /* Oculta a lista de links (será exibida via JS/classe .is-open) */
     #nav ul {
         display: none; 
         position: absolute;
@@ -646,7 +640,7 @@ body.dark-mode .profile-img {
         z-index: 998;
     }
 
-    /* Estilo para links quando o menu estiver aberto */
+    /* Classe que o JS adiciona */
     #nav ul.is-open {
         display: flex;
     }
@@ -668,17 +662,19 @@ body.dark-mode .profile-img {
     }
 
     .theme-toggle {
-        margin-left: 15px; /* Ajusta a margem para telas menores */
+        margin-left: 15px;
     }
 
     /* -------------------------------------
-        CONTEÚDO (Mantido do seu código)
+        HERO SECTION (CORREÇÃO DE CENTRALIZAÇÃO)
         ------------------------------------- */
     .hero-content h1 {
-        font-size: 3em;
+        font-size: 3em; 
+        /* Centraliza o texto e evita overflow causado pela animação de digitação */
+        text-align: center; 
+        max-width: 95vw; 
     }
-
-    /* Ajuste de animação para dispositivos móveis */
+    
     .hero-content h1 {
         animation-duration: 2s; 
     }
@@ -689,6 +685,7 @@ body.dark-mode .profile-img {
         animation-delay: 3s;
     }
     
+    /* Outras seções */
     #about .card {
         flex-direction: column;
         text-align: center;
@@ -717,7 +714,7 @@ body.dark-mode .profile-img {
 
 @media (max-width: 600px) {
     .hero-content h1 {
-        font-size: 2.2em;
+        font-size: 2em; /* Tamanho para caber em telas menores sem quebrar */
     }
 
     .section-title {
@@ -732,14 +729,12 @@ body.dark-mode .profile-img {
         padding: 10px 0;
     }
     
-    /* Garante que o ícone grande se ajuste em telas muito pequenas */
     .skill-icon.large {
         max-width: 150px;
         max-height: 150px;
     }
 
     #projects .projects-grid {
-        /* Garante que os projetos se empilhem em telas pequenas */
         grid-template-columns: 1fr;
     }
 }
