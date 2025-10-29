@@ -13,6 +13,10 @@
 <body>
     <div id="header">
         <nav class="container" id="nav">
+            <button class="menu-toggle" aria-label="Abrir Menu">
+                <i class="fas fa-bars"></i> 
+            </button>
+
             <ul>
                 <li><a href="#about" data-target="about">Sobre</a></li>
                 <li><a href="#skills" data-target="skills">Habilidades</a></li>
@@ -20,6 +24,7 @@
                 <li><a href="#projects" data-target="projects">Projetos</a></li>
                 <li><a href="#contact" data-target="contact">Contato</a></li>
             </ul>
+            
             <button id="theme-toggle" class="theme-toggle" title="Alternar Tema">
                 <i class="fas fa-sun"></i> 
             </button>
@@ -27,23 +32,21 @@
     </div>
 
     <main>
-    <section id="hero" class="section">
-        <div class="hero-content">
-            <h1>Kevin Cardoso de Oliveira</h1>
-            <h2>Título Profissional - | Tec.Adm| Desenvolvedor Web | Web Designer</h2>
-           <div class="social-links">
-    <a href="https://github.com/kevincardoso3567-maker" target="_blank" rel="noopener noreferrer" title="Perfil GitHub">
-        <img src="GT.png" alt="Logo GT (GitHub)" class="custom-icon">
-    </a>
-    
-    <a href="https://wa.me/5511957222982" target="_blank" rel="noopener noreferrer" title="Contato WhatsApp">
-        <img src="WS.png" alt="Logo WS (WhatsApp)" class="custom-icon">
-    </a>
-</div>
-        </div>
-    </section>
-
-    </main>
+        <section id="hero" class="section">
+            <div class="hero-content">
+                <h1>Kevin Cardoso de Oliveira</h1>
+                <h2>Título Profissional - | Tec.Adm| Desenvolvedor Web | Web Designer</h2>
+                <div class="social-links">
+                    <a href="https://github.com/kevincardoso3567-maker" target="_blank" rel="noopener noreferrer" title="Perfil GitHub">
+                        <img src="GT.png" alt="Logo GT (GitHub)" class="custom-icon">
+                    </a>
+                    
+                    <a href="https://wa.me/5511957222982" target="_blank" rel="noopener noreferrer" title="Contato WhatsApp">
+                        <img src="WS.png" alt="Logo WS (WhatsApp)" class="custom-icon">
+                    </a>
+                </div>
+            </div>
+        </section>
 
         <section id="about" class="section container">
             <h3 class="section-title">Sobre Mim</h3>
@@ -63,42 +66,43 @@
             </div>
         </section>
 
-        <!--HABILIDADES TECNICAS-->
         <section id="skills" class="section container">
             <h3 class="section-title">Habilidades Técnicas</h3>
             <div class="skills-grid">
                 
                 <div class="skill-item card" data-level="95">
                     <div class="skill-content-icon">
-                        <img src="HTML.png" alt="Logo HTML5 e CSS3" class="skill-icon large">
+                        <img src="HTML.png" alt="Logo HTML5" class="skill-icon large">
+                        <div class="progress-bar"><div class="progress-bar-fill"></div></div>
                     </div>
                 </div>
                 
                 <div class="skill-item card" data-level="90">
                     <div class="skill-content-icon">
-                        <img src="CSS.png" alt="Logo JavaScript" class="skill-icon large"> 
+                        <img src="CSS.png" alt="Logo CSS3" class="skill-icon large"> 
+                        <div class="progress-bar"><div class="progress-bar-fill"></div></div>
                     </div>
                 </div>
                 
                 <div class="skill-item card" data-level="85">
                     <div class="skill-content-icon">
-                        <img src="JS.png" alt="Logo React/Vue/Angular" class="skill-icon large">
+                        <img src="JS.png" alt="Logo JavaScript" class="skill-icon large">
+                        <div class="progress-bar"><div class="progress-bar-fill"></div></div>
                     </div>
                 </div>
                 
                 <div class="skill-item card" data-level="75">
                     <div class="skill-content-icon">
-                        <img src="EXCEL.png" alt="Logo Node.js/Python/Java" class="skill-icon large">
+                        <img src="EXCEL.png" alt="Logo EXCEL" class="skill-icon large">
+                        <div class="progress-bar"><div class="progress-bar-fill"></div></div>
                     </div>
                 </div>
                 
                 <div class="skill-item card" data-level="80">
                     <div class="skill-content-icon">
-                        <img src="PS.png" alt="Logo SQL/NoSQL" class="skill-icon large">
+                        <img src="PS.png" alt="Logo Photoshop" class="skill-icon large">
+                        <div class="progress-bar"><div class="progress-bar-fill"></div></div>
                     </div>
-                </div>
-                
-                
                 </div>
                 
             </div>
