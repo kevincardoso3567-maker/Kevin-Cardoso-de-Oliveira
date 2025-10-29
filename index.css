@@ -42,7 +42,7 @@ body {
     color: var(--text-color);
     background-color: var(--background-color);
     transition: background-color 0.5s, color 0.5s; /* Transição de tema suave */
-    overflow-x: hidden; /* CRÍTICO: Previne rolagem horizontal não intencional */
+    overflow-x: hidden;
 }
 
 a {
@@ -89,7 +89,7 @@ textarea:focus-visible {
     background-color: var(--secondary-color);
     margin: 10px auto 0;
     border-radius: 2px;
-    transform: scaleX(0); /* Efeito de linha animada */
+    transform: scaleX(0); 
     transition: transform 0.6s ease-out;
 }
 
@@ -99,7 +99,7 @@ textarea:focus-visible {
 }
 
 /* =======================================================
-    2. HEADER E NAVEGAÇÃO
+    2. HEADER E NAVEGAÇÃO (AJUSTADO PARA ROLAGEM HORIZONTAL)
     ======================================================= */
 #header {
     position: sticky;
@@ -112,34 +112,43 @@ textarea:focus-visible {
 
 #nav {
     display: flex;
+    /* Ajusta para centralizar o menu e colocar o toggle de tema à direita */
     justify-content: space-between; 
     align-items: center;
     padding: 15px 20px; 
 }
 
-/* Oculta o menu-toggle por padrão (desktop) */
+/* Remove o Botão Menu Hambúrguer completamente */
 .menu-toggle {
-    display: none; 
-    background: none;
-    border: none;
-    color: var(--text-color);
-    cursor: pointer;
-    font-size: 1.8em;
-    padding: 5px;
-    transition: color 0.3s;
-    order: 0;
+    display: none !important; 
 }
 
 #nav ul {
     list-style: none;
-    display: flex; /* Links em linha no desktop */
+    display: flex; 
     margin: 0;
     padding: 0;
     order: 1; 
+    flex-grow: 1; /* Ocupa o espaço central */
+    
+    /* NOVO: Propriedades para Rolagem Horizontal (aplicadas globalmente e ajustadas no mobile) */
+    overflow-x: auto; 
+    overflow-y: hidden;
+    white-space: nowrap; /* Impede a quebra de linha */
+    -webkit-overflow-scrolling: touch;
+    
+    /* Remove a barra de rolagem horizontal se o browser suportar */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Remove a barra de rolagem em navegadores baseados em Webkit (Chrome, Safari) */
+#nav ul::-webkit-scrollbar {
+    display: none; 
 }
 
 #nav li {
     margin-left: 30px;
+    flex-shrink: 0; /* Impede que os itens encolham no mobile */
 }
 
 #nav a {
@@ -183,7 +192,7 @@ textarea:focus-visible {
 }
 
 /* =======================================================
-    3. HERO SECTION (APRESENTAÇÃO) - SEM ANIMAÇÃO DE DIGITAÇÃO
+    3. HERO SECTION (APRESENTAÇÃO)
     ======================================================= */
 #hero {
     min-height: 80vh;
@@ -201,37 +210,28 @@ textarea:focus-visible {
     align-items: center; 
 }
 
-/* H1 GERAL - TEXTO FIXO E VISÍVEL */
 .hero-content h1 {
     font-family: 'Fira Code', monospace;
     font-size: 4em;
     font-weight: 700;
     color: var(--primary-color);
     margin: 0 auto 10px auto; 
-    
-    /* REMOÇÃO TOTAL DAS PROPRIEDADES DA ANIMAÇÃO DE DIGITAÇÃO */
-    /* text-align: center; para garantir centralização em caso de quebra */
 }
-
-/* REMOÇÃO DOS KEYFRAMES DE TYPING E BLINK-CARET */
-/* @keyframes typing { ... } */
-/* @keyframes blink-caret { ... } */
 
 .hero-content h2 {
     font-size: 1.8em;
     font-weight: 300;
     color: var(--secondary-color);
-    /* Animação de entrada rápida, sem delay do typing */
     opacity: 0;
     animation: fadeIn 1s ease-out forwards;
-    animation-delay: 0.5s; /* Aparece logo após o H1 */
+    animation-delay: 0.5s; 
 }
 
 .social-links {
     margin-top: 30px;
     opacity: 0;
     animation: fadeIn 1s ease-out forwards;
-    animation-delay: 1s; /* Aparece logo após o H2 */
+    animation-delay: 1s; 
     
     display: flex;
     justify-content: center;
@@ -305,7 +305,7 @@ body.dark-mode .profile-img {
     filter: brightness(0.9) contrast(1.1);
 }
 
-/* SEÇÃO SKILLS (REMOÇÃO DE BARRAS DE PROGESSO) */
+/* SEÇÃO SKILLS */
 #skills .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
@@ -334,7 +334,7 @@ body.dark-mode .profile-img {
     max-width: 150px; 
     height: auto;
     max-height: 150px; 
-    margin-bottom: 0; /* Centraliza a imagem no card */
+    margin-bottom: 0; 
     transition: transform 0.3s ease;
 }
 
@@ -342,7 +342,6 @@ body.dark-mode .profile-img {
     transform: scale(1.1); 
 }
 
-/* CRÍTICO: OCULTA AS BARRAS DE PROGRESSO CONFORME SOLICITADO */
 .progress-bar {
     display: none; 
 }
@@ -551,63 +550,44 @@ body.dark-mode .profile-img {
 
 
 /* =======================================================
-    5. MEDIA QUERIES (RESPONSIVIDADE E MOBILE)
+    5. MEDIA QUERIES (RESPONSIVIDADE AJUSTADA)
     ======================================================= */
 @media (max-width: 992px) {
     /* -------------------------------------
-        HEADER/NAVEGAÇÃO (Mobile)
+        HEADER/NAVEGAÇÃO (ROLAGEM HORIZONTAL)
         ------------------------------------- */
-    .menu-toggle {
-        display: block; /* Mostra o botão hambúrguer */
-    }
     
+    /* Remove padding lateral do nav container para dar mais espaço para a rolagem */
     #nav {
-        position: relative;
+        padding: 15px 0; 
     }
 
     #nav ul {
-        display: none; /* Esconde o menu por padrão */
-        position: absolute; 
-        top: 100%; 
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background-color: var(--card-bg);
-        box-shadow: var(--shadow);
-        border-top: 1px solid var(--progress-bar-bg);
-        z-index: 998;
+        /* Garante que o menu ocupe o espaço e seja rolável */
+        justify-content: flex-start; /* Alinha os links à esquerda na rolagem */
+        
+        /* Adiciona padding horizontal (simulado) para o primeiro e último item não ficarem colados na borda */
+        padding: 0 20px; 
     }
 
-    /* Classe que o JS adiciona para abrir o menu */
-    #nav ul.is-open {
-        display: flex;
-    }
-    
     #nav li {
-        margin-left: 0;
-        text-align: center;
-        width: 100%;
+        margin-left: 20px; /* Reduz o espaçamento entre itens no mobile */
     }
     
-    #nav a {
-        display: block;
-        padding: 12px 20px;
-        border-bottom: 1px solid var(--progress-bar-bg);
-    }
-    
-    #nav li:last-child a {
-        border-bottom: none;
+    #nav li:first-child {
+        margin-left: 0; /* Remove a margem do primeiro item, ele será espaçado pelo padding do UL */
     }
 
-    /* -------------------------------------
-        HERO SECTION (Mobile)
-        ------------------------------------- */
+    #nav a {
+        padding: 8px 0; /* Reduz padding vertical dos links */
+    }
+    
+    /* Outras seções */
     .hero-content h1 {
         font-size: 3em; 
-        text-align: center; /* Garante centralização */
+        text-align: center; 
     }
 
-    /* Outras seções */
     #about .card {
         flex-direction: column;
         text-align: center;
@@ -649,10 +629,6 @@ body.dark-mode .profile-img {
 
     .container {
         padding: 0 10px;
-    }
-
-    #nav {
-        padding: 10px 10px; 
     }
     
     #skills .skills-grid {
