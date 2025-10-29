@@ -58,18 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // =======================================================
-        // CÓDIGO REMOVIDO PARA MANTER O MENU ABERTO NO MOBILE
-        // =======================================================
-        /* document.querySelectorAll('#nav ul li a').forEach(link => {
-            link.addEventListener('click', () => {
-                navList.classList.remove('is-open'); // <-- LINHA REMOVIDA
-                menuToggle.querySelector('i').classList.remove('fa-times');
-                menuToggle.querySelector('i').classList.add('fa-bars');
-            });
-        });
-        */
-        // =======================================================
+        // NOTA IMPORTANTE: O bloco de código que fechava o menu ao clicar em 'nav a'
+        // foi REMOVIDO permanentemente daqui para garantir que o menu permaneça aberto.
     }
 
     // =======================================================
