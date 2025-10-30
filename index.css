@@ -131,7 +131,7 @@ textarea:focus-visible {
     order: 1; 
     flex-grow: 1; /* Ocupa o espaço central */
     
-    /* NOVO: Propriedades para Rolagem Horizontal (aplicadas globalmente e ajustadas no mobile) */
+    /* NOVO: Propriedades para Rolagem Horizontal */
     overflow-x: auto; 
     overflow-y: hidden;
     white-space: nowrap; /* Impede a quebra de linha */
@@ -270,7 +270,7 @@ textarea:focus-visible {
     transform: translateY(0);
 }
 
-/* Efeito Tilt/Hover nos cards */
+/* Efeito Tilt/Hover nos cards (Geral) */
 .card {
     background-color: var(--card-bg);
     padding: 30px;
@@ -280,7 +280,7 @@ textarea:focus-visible {
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px); /* Efeito de subida para cards gerais (About, Contact, Skills) */
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
@@ -432,44 +432,102 @@ body.dark-mode .profile-img {
     display: block;
 }
 
-/* SEÇÃO PROJECTS (GRID) */
-#projects .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+/* =======================================================
+    SEÇÃO PROJECTS (CARROSSEL HORIZONTAL)
+    ======================================================= */
+.projects-carousel {
+    display: flex;
+    overflow-x: scroll; /* ATIVA O SCROLL HORIZONTAL */
+    padding-bottom: 20px; /* Espaço para a barra de rolagem não cortar a sombra */
     gap: 30px;
+    -webkit-overflow-scrolling: touch; /* Melhora o scroll em dispositivos Apple */
+    /* Opcional: Estilo da barra de rolagem (Firefox) */
+    scrollbar-width: thin; 
+    scrollbar-color: var(--primary-color) var(--card-bg);
 }
 
+/* Estilo da barra de rolagem para navegadores WebKit (Chrome, Safari) */
+.projects-carousel::-webkit-scrollbar {
+    height: 8px;
+}
+.projects-carousel::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+.projects-carousel::-webkit-scrollbar-track {
+    background: var(--card-bg);
+}
+
+
 .project-card {
-    min-height: 280px;
+    /* IMPORTANTE para o carrossel: Largura fixa e impede quebra de linha */
+    flex: 0 0 350px; 
+    /* Altura ajustada para o formato retangular */
+    min-height: 380px; 
     position: relative;
     overflow: hidden;
     background-color: var(--card-bg);
     border-radius: 12px;
     box-shadow: var(--shadow);
+    transition: transform 0.3s ease-out, box-shadow 0.3s, background-color 0.3s;
 }
+
+/* 🚀 CORREÇÃO APLICADA: Usando um seletor mais específico e 'transform: none' */
+.projects-carousel .project-card:hover {
+    transform: none; /* Anula qualquer transformação de subida herdada de .card:hover */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Mantém apenas a sombra mais forte */
+}
+
+/* Estrutura interna para o layout de Conteúdo + Informação (usado em todos os cards) */
+.project-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Contêiner de Mídia (Vídeo/Imagem) */
+.project-card .video-container {
+    width: 100%;
+    /* Define uma altura relativa para a área do vídeo/imagem. ~50% do card verticalmente */
+    height: 50%; 
+    max-height: 200px; /* Limite opcional para controle */
+    overflow: hidden; 
+}
+
+.project-card .video-container video, 
+.project-card .video-container img {
+    width: 100%;
+    /* CRÍTICO: Faz a mídia preencher o contêiner e corta o excesso, mantendo a proporção */
+    height: 100%; 
+    object-fit: cover; 
+    display: block; 
+}
+
+.project-info {
+    padding: 15px;
+    flex-grow: 1; /* Faz o info ocupar o restante do espaço no card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-info h4 {
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.project-info p {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+
 
 .project-card:hover .project-overlay {
     opacity: 1;
     transform: translateY(0);
-}
-
-.project-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(93, 83, 255, 0.9); 
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    opacity: 0;
-    transform: translateY(100%);
-    transition: all 0.4s ease-out;
-    text-align: center;
 }
 
 .project-overlay h4 {
@@ -482,15 +540,8 @@ body.dark-mode .profile-img {
     margin-bottom: 20px;
 }
 
-.project-overlay .tech-tags span {
-    display: inline-block;
-    background: white;
-    color: var(--primary-color);
-    padding: 3px 8px;
-    border-radius: 3px;
-    font-size: 0.8em;
-    margin: 0 5px 5px 0;
-}
+
+
 
 /* SEÇÃO CONTACT */
 #contact .card {
@@ -612,6 +663,12 @@ body.dark-mode .profile-img {
     .timeline-right {
         left: 0;
     }
+    
+    /* Ajuste de tamanho do card de projeto no mobile para manter a proporção */
+    .project-card {
+        flex: 0 0 90vw; /* Ocupa 90% da largura da tela no mobile */
+        min-height: 350px; 
+    }
 }
 
 @media (max-width: 600px) {
@@ -638,9 +695,5 @@ body.dark-mode .profile-img {
     .skill-icon.large {
         max-width: 100px;
         max-height: 100px;
-    }
-
-    #projects .projects-grid {
-        grid-template-columns: 1fr;
     }
 }
