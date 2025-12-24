@@ -284,7 +284,7 @@ textarea:focus-visible {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* SEÇÃO ABOUT - ALTERAÇÃO EXCLUSIVA SOLICITADA */
+/* SEÇÃO ABOUT - AJUSTADA PARA RESPONSIVO SEM ESPAÇOS VAZIOS */
 #about .card {
     display: flex;
     gap: 40px;
@@ -301,22 +301,24 @@ textarea:focus-visible {
     transition: filter 0.3s;
 }
 
-/* Formatação específica para a lista interna do Sobre Mim */
 .about-text p {
     text-align: justify;
     margin-bottom: 15px;
+    /* Ajustes para evitar buracos no texto */
+    hyphens: auto;
+    word-break: break-word;
 }
 
 .about-text ul {
-    list-style: none; /* Remove as bolinhas padrão */
-    padding-left: 25px; /* Recuo para frente solicitado */
+    list-style: none;
+    padding-left: 25px; /* Seu recuo de lista */
     margin-bottom: 15px;
 }
 
 .about-text ul li {
     text-align: justify;
     margin-bottom: 8px;
-    position: relative;
+    hyphens: auto;
 }
 
 body.dark-mode .profile-img {
@@ -660,6 +662,11 @@ body.dark-mode .profile-img {
     #about .card {
         flex-direction: column;
         text-align: center;
+    }
+
+    /* 🚀 AJUSTE DE TEXTO PARA MOBILE (EVITA ESPAÇAMENTO EXAGERADO) */
+    .about-text p, .about-text ul li {
+        text-align: left; /* No mobile, alinhar à esquerda é mais legível */
     }
 
     .timeline::after {
