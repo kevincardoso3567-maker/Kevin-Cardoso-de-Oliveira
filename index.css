@@ -664,9 +664,12 @@ body.dark-mode .profile-img {
         text-align: center;
     }
 
-    /* 🚀 AJUSTE DE TEXTO PARA MOBILE (EVITA ESPAÇAMENTO EXAGERADO) */
+    /* 🚀 AQUI ESTÁ A ÚNICA MUDANÇA: Justificado ativo no mobile com hifenização */
     .about-text p, .about-text ul li {
-        text-align: left; /* No mobile, alinhar à esquerda é mais legível */
+        text-align: justify; 
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        text-justify: inter-word;
     }
 
     .timeline::after {
