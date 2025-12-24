@@ -284,7 +284,7 @@ textarea:focus-visible {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* SEÇÃO ABOUT */
+/* SEÇÃO ABOUT - ALTERAÇÃO EXCLUSIVA SOLICITADA */
 #about .card {
     display: flex;
     gap: 40px;
@@ -299,6 +299,24 @@ textarea:focus-visible {
     border: 5px solid var(--primary-color);
     flex-shrink: 0;
     transition: filter 0.3s;
+}
+
+/* Formatação específica para a lista interna do Sobre Mim */
+.about-text p {
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+.about-text ul {
+    list-style: none; /* Remove as bolinhas padrão */
+    padding-left: 25px; /* Recuo para frente solicitado */
+    margin-bottom: 15px;
+}
+
+.about-text ul li {
+    text-align: justify;
+    margin-bottom: 8px;
+    position: relative;
 }
 
 body.dark-mode .profile-img {
